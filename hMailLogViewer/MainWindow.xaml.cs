@@ -33,7 +33,11 @@ namespace hMailLogViewer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length == 2)
+            {
+                this.LoadFile(args[1]);
+            }
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)

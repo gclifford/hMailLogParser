@@ -20,7 +20,6 @@ namespace hMailLogParser.Line
         public int ThreadID { get; set; }
         public int SessionID { get; set; }
         public DateTime Date { get; set; }
-        public string IPAddress { get; set; }
         public string Message { get; set; }
 
         /*

@@ -17,5 +17,11 @@ namespace hMailLogParser.Line
         {
             this.Message = string.Join("\t", columns);
         }
+
+        private const string _LINE_TYPE = "UNKNOWN";
+        protected override string GetLineType()
+        {
+            return _LINE_TYPE;
+        }
     }
 }

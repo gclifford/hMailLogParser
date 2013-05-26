@@ -18,6 +18,9 @@ namespace TestClient
 
             var grouped = lines.GroupBy(x => x.SessionID);
             Console.WriteLine(grouped.Count());
+
+            var grouped2 = lines.GroupBy(x => x.ThreadID);
+            Console.WriteLine(grouped2.Count());
         }
     }
 }

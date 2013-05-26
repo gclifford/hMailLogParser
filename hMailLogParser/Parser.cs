@@ -37,10 +37,10 @@ namespace hMailLogParser
             switch (type)
             {
                 case "SMTPD":
-                    line = new SMTPDLine(columns);
+                    line = new SMTPDaemonLine(columns);
                     break;
                 case "SMTPC":
-                    line = new SMTPCLine(columns);
+                    line = new SMTPClientLine(columns);
                     break;
                 default:
                     line = new UnknownLine(columns);

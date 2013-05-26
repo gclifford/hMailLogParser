@@ -5,9 +5,9 @@ using System.Text;
 
 namespace hMailLogParser.Line
 {
-    public class SMTPCLine : LogLine
+    public class SMTPClientLine : SMTPLine
     {
-        public SMTPCLine(string[] columns)
+        public SMTPClientLine(string[] columns)
             : base(columns)
         {
 
@@ -17,7 +17,7 @@ namespace hMailLogParser.Line
         {
             if (columns.Length == 6)
             {
-                this.Number1 = int.Parse(columns[1].Sanitize());
+                this.ThreadID = int.Parse(columns[1].Sanitize());
                 this.SessionID = int.Parse(columns[2].Sanitize());
                 this.Date = DateTime.Parse(columns[3].Sanitize());
                 this.IPAddress = columns[4].Sanitize();
@@ -28,8 +28,11 @@ namespace hMailLogParser.Line
                 throw new Exception("Malformed line");
             }
         }
-        
-        public string IPAddress { get; set; }
-        
+
+        private const string _LINE_TYPE = "SMTPC";
+        protected override string GetLineType()
+        {
+            return _LINE_TYPE;
+        }        
     }
 }

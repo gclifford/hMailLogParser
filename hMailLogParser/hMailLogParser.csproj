@@ -42,8 +42,9 @@
   <ItemGroup>
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Line\LogLine.cs" />
-    <Compile Include="Line\SMTPCLine.cs" />
-    <Compile Include="Line\SMTPDLine.cs" />
+    <Compile Include="Line\SMTPLine.cs" />
+    <Compile Include="Line\SMTPClientLine.cs" />
+    <Compile Include="Line\SMTPDaemonLine.cs" />
     <Compile Include="Line\UnknownLine.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

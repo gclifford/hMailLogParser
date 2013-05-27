@@ -24,6 +24,18 @@
             <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Path=Message}"></TextBlock>
         </Grid>
         <DataGrid Name="dgLogViewer" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" ItemsSource="{Binding Path=RelatedLines, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Error">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Transient">
+                            <Setter Property="Background" Value="Yellow" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type"  Binding="{Binding LineType}"/>
                 <DataGridTextColumn Header="Session ID" Binding="{Binding SessionID}" />

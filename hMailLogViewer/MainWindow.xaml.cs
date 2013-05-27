@@ -69,7 +69,30 @@ namespace hMailLogViewer
 
                 this.defaultView = CollectionViewSource.GetDefaultView(lines);
                 this.defaultView.Filter =
-                    w => ((LogLine)w).Message.Contains(this.txtSearch.Text);
+                    w =>
+                    {
+                        bool statusFilter = true;
+                        if (w is SMTPLine)
+                        {
+                            var smtpLine = w as SMTPLine;
+                            switch (smtpLine.StatusLevel)
+                            {
+                                case SMTPStatusLevel.Error:
+                                    statusFilter = tbFilterError.IsChecked.GetValue();
+                                    break;
+                                case SMTPStatusLevel.Transient:
+                                    statusFilter = tbFilterTransient.IsChecked.GetValue();
+                                    break;
+                                case SMTPStatusLevel.Normal:
+                                    statusFilter = tbFilterNormal.IsChecked.GetValue();
+                                    break;
+                            }
+
+                        }
+
+                        var line = w as LogLine;
+                        return line.Message.Contains(this.txtSearch.Text) && statusFilter;
+                    };
 
                 this.dgLogViewer.ItemsSource = this.defaultView;
             }
@@ -105,13 +128,18 @@ namespace hMailLogViewer
             using (new CodeTimer())
             {
                 var line = this.dgLogViewer.SelectedItem as LogLine;
-                var items = this.dgLogViewer.ItemsSource.OfType<LogLine>().Where(x => x.SessionID == line.SessionID).ToArray();
+                var items = this.defaultView.SourceCollection.OfType<LogLine>().Where(x => x.SessionID == line.SessionID).ToArray();
                 winLineDetails dialog = new winLineDetails();
                 dialog.Owner = this;
                 dialog.Line = line;
                 dialog.RelatedLines = items;
                 dialog.Show();
             }
+        }
+
+        private void tbFilter_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Search();
         }
     }
 }

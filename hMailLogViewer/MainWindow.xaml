@@ -20,16 +20,23 @@
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
-            <TextBlock>Filter</TextBlock>
-            <TextBox Name="txtSearch" Grid.Column="1" KeyUp="TextBox_KeyUp" IsEnabled="false" />
-            <Button Name="btnSearch" Click="btnSearch_Click" Grid.Column="2" Width="50" Height="23" IsEnabled="false">Search</Button>
-        </Grid>
+        <DockPanel DockPanel.Dock="Top">
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <ToggleButton Name="tbFilterNormal" Width="50" Height="25" Content="Normal" IsChecked="True" Click="tbFilter_Checked"></ToggleButton>
+                <ToggleButton Name="tbFilterTransient" Width="50" Height="25" Content="Transient" IsChecked="True" Click="tbFilter_Checked"></ToggleButton>
+                <ToggleButton Name="tbFilterError" Width="50" Height="25" Content="Error" IsChecked="True" Click="tbFilter_Checked"></ToggleButton>
+            </StackPanel>
+            <Grid DockPanel.Dock="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock>Filter</TextBlock>
+                <TextBox Name="txtSearch" Grid.Column="1" KeyUp="TextBox_KeyUp" IsEnabled="false" />
+                <Button Name="btnSearch" Click="btnSearch_Click" Grid.Column="2" Width="50" Height="23" IsEnabled="false">Search</Button>
+            </Grid>
+        </DockPanel>
         <DataGrid Name="dgLogViewer" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                   MouseDoubleClick="dgLogViewer_MouseDoubleClick">
             <DataGrid.RowStyle>

@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BoolExtensions.cs" />
     <Compile Include="winLineDetails.xaml.cs">
       <DependentUpon>winLineDetails.xaml</DependentUpon>
     </Compile>

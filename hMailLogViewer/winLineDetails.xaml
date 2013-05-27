@@ -1,7 +1,7 @@
 ﻿<Window x:Class="hMailLogViewer.winLineDetails"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="winLineDetails" Height="300" Width="800" WindowStyle="ToolWindow">
+        Title="winLineDetails" Height="400" Width="800" WindowStyle="ToolWindow">
     <DockPanel>
         <Grid DockPanel.Dock="Top" DataContext="{Binding Path=Line, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
             <Grid.RowDefinitions>
@@ -28,7 +28,7 @@
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Error">
-                            <Setter Property="Background" Value="Red" />
+                            <Setter Property="Background" Value="OrangeRed" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Transient">
                             <Setter Property="Background" Value="Yellow" />

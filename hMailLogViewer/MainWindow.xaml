@@ -43,7 +43,7 @@
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Error">
-                            <Setter Property="Background" Value="Red" />
+                            <Setter Property="Background" Value="OrangeRed" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Transient">
                             <Setter Property="Background" Value="Yellow" />

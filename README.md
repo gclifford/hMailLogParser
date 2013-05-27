@@ -1,7 +1,7 @@
 hMailLogParser
 ==============
 
-An library and GUI for parsing and viewing [hMailServer](www.hmailserver.com) logs.
+An library and GUI for parsing and viewing [hMailServer](http://www.hmailserver.com) logs.
 
 3rd Party Libraries and Images
 ------------------------------

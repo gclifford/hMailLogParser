@@ -95,6 +95,7 @@ namespace hMailLogViewer
                     };
 
                 this.dgLogViewer.ItemsSource = this.defaultView;
+                this.tbNumberOfLines.Text = lines.Count().ToString();
             }
 
             this.txtSearch.IsEnabled = true;

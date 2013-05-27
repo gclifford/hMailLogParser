@@ -32,6 +32,18 @@
         </Grid>
         <DataGrid Name="dgLogViewer" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                   MouseDoubleClick="dgLogViewer_MouseDoubleClick">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Error">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Transient">
+                            <Setter Property="Background" Value="Yellow" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type"  Binding="{Binding LineType}"/>
                 <DataGridTextColumn Header="Session ID" Binding="{Binding SessionID}" />

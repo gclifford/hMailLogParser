@@ -22,6 +22,8 @@ namespace hMailLogParser.Line
                 this.Date = DateTime.Parse(columns[3].Sanitize());
                 this.IPAddress = columns[4].Sanitize();
                 this.Message = columns[5].Sanitize();
+
+                this.ParseSMTPMessage(this.Message);
             }
             else
             {

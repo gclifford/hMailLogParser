@@ -8,6 +8,6 @@ namespace hMailLogParser
 {
     public static class CompiledRegex
     {
-        public static readonly Regex SMTPMessage = new Regex("(?<Direction>(SENT|RECEIVED)):", RegexOptions.Compiled);
+        public static readonly Regex SMTPMessage = new Regex("^(?<Direction>(SENT|RECEIVED)): (?<SMTPStatus>\\d{3})?(\\s?(?<Message>.*))$", RegexOptions.Compiled);
     }
 }

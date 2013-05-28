@@ -142,5 +142,12 @@ namespace hMailLogViewer
         {
             this.Search();
         }
+
+        private void MenuItemAbout_Click(object sender, RoutedEventArgs e)
+        {
+            winAbout dialog = new winAbout();
+            dialog.Owner = this;
+            dialog.ShowDialog();
+        }
     }
 }

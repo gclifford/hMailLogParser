@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hMailLogViewer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Copyright (c) 2013, Graham Clifford")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Graham Clifford")]
 [assembly: AssemblyProduct("hMailLogViewer")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]

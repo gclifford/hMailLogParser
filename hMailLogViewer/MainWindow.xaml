@@ -6,10 +6,12 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File" Height="25">
                 <MenuItem Header="_Open" Click="MenuItemOpen_Click">
-                    <!--<MenuItem.Icon>
-                            <Image Source="Images/cut.png" />
-                        </MenuItem.Icon>-->
+                    <MenuItem.Icon>
+                        <Image Source="Images/folder_page.png" />
+                    </MenuItem.Icon>
                 </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_About" Click="MenuItemAbout_Click">
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
@@ -27,20 +29,26 @@
             </StatusBarItem>
         </StatusBar>
         <DockPanel DockPanel.Dock="Top">
-            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                <ToggleButton Name="tbFilterNormal" Width="50" Height="25" Content="Normal" IsChecked="True" Click="tbFilter_Checked"></ToggleButton>
-                <ToggleButton Name="tbFilterTransient" Width="50" Height="25" Content="Transient" IsChecked="True" Click="tbFilter_Checked"></ToggleButton>
-                <ToggleButton Name="tbFilterError" Width="50" Height="25" Content="Error" IsChecked="True" Click="tbFilter_Checked"></ToggleButton>
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Margin="2">
+                <ToggleButton Name="tbFilterNormal" Width="25" IsChecked="True" Click="tbFilter_Checked" Margin="2">
+                    <Image Source="Images/information.png" />
+                </ToggleButton>
+                <ToggleButton Name="tbFilterTransient" Width="25" IsChecked="True" Click="tbFilter_Checked" Margin="2">
+                    <Image Source="Images/error.png" />
+                </ToggleButton>
+                <ToggleButton Name="tbFilterError" IsChecked="True" Width="25" Click="tbFilter_Checked" Margin="2">
+                    <Image Source="Images/exclamation.png" />
+                </ToggleButton>
             </StackPanel>
-            <Grid DockPanel.Dock="Right">
+            <Grid DockPanel.Dock="Right" Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock>Filter</TextBlock>
-                <TextBox Name="txtSearch" Grid.Column="1" KeyUp="TextBox_KeyUp" IsEnabled="false" />
-                <Button Name="btnSearch" Click="btnSearch_Click" Grid.Column="2" Width="50" Height="23" IsEnabled="false">Search</Button>
+                <TextBlock Margin="2">Filter</TextBlock>
+                <TextBox Name="txtSearch" Grid.Column="1" KeyUp="TextBox_KeyUp" IsEnabled="false" Margin="2" />
+                <Button Name="btnSearch" Click="btnSearch_Click" Grid.Column="2" Width="50" Height="23" Margin="2" IsEnabled="false">Search</Button>
             </Grid>
         </DockPanel>
         <DataGrid Name="dgLogViewer" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"

@@ -44,6 +44,7 @@ namespace hMailLogViewer
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.InitialDirectory = Environment.CurrentDirectory;
+            dlg.Multiselect = true;
             dlg.Filter = "Log|*.log|All Files|*.*";
             dlg.DefaultExt = ".log"; // Default file extension
 
@@ -54,18 +55,21 @@ namespace hMailLogViewer
             if (result == true)
             {
                 // Open document 
-                string filename = dlg.FileName;
-                this.LoadFile(filename);
+                this.LoadFile(dlg.FileNames);
             }
         }
 
-        protected void LoadFile(string filename)
+        protected void LoadFile(params string[] filenames)
         {
             using (new CodeTimer(this.tbExectuionTime))
             {
                 Parser p = new Parser();
 
-                var lines = p.Parse(filename);
+                List<LogLine> lines = new List<LogLine>();
+                foreach (var filename in filenames)
+                {
+                    lines.AddRange(p.Parse(filename));
+                }
 
                 this.defaultView = CollectionViewSource.GetDefaultView(lines);
                 this.defaultView.Filter =

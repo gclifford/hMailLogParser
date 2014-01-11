@@ -36,11 +36,20 @@ namespace hMailLogParser
             var type = columns[0].Sanitize();
             switch (type)
             {
-                case "SMTPD":
+                case SMTPDaemonLine.LINE_TYPE:
                     line = new SMTPDaemonLine(columns);
                     break;
-                case "SMTPC":
+                case SMTPClientLine.LINE_TYPE:
                     line = new SMTPClientLine(columns);
+                    break;
+                case TCPIPLine.LINE_TYPE:
+                    line = new TCPIPLine(columns);
+                    break;
+                case ApplicationLine.LINE_TYPE:
+                    line = new ApplicationLine(columns);
+                    break;
+                case POP3DaemonLine.LINE_TYPE:
+                    line = new POP3DaemonLine(columns);
                     break;
                 default:
                     line = new UnknownLine(columns);

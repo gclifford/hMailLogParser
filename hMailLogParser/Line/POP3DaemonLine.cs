@@ -5,9 +5,9 @@ using System.Text;
 
 namespace hMailLogParser.Line
 {
-    public class SMTPClientLine : SessionBasedLine
+    public class POP3DaemonLine : SessionBasedLine
     {
-        public SMTPClientLine(string[] columns)
+        public POP3DaemonLine(string[] columns)
             : base(columns)
         {
 
@@ -31,7 +31,7 @@ namespace hMailLogParser.Line
             }
         }
 
-        public const string LINE_TYPE = "SMTPC";
+        public const string LINE_TYPE = "POP3D";
         protected override string GetLineType()
         {
             return LINE_TYPE;

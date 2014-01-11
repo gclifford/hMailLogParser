@@ -13,9 +13,9 @@ namespace hMailLogParser.Line
         Error = 2
     }
 
-    public abstract class SMTPLine : LogLine
+    public abstract class SessionBasedLine : LogLine
     {
-        public SMTPLine(string[] columns)
+        public SessionBasedLine(string[] columns)
             : base(columns)
         {
 
@@ -77,5 +77,6 @@ namespace hMailLogParser.Line
         public SMTPStatusLevel StatusLevel { get; set; }
         public string ParsedMessage { get; set; }
         public string IPAddress { get; set; }
+        public int SessionID { get; set; }
     }
 }

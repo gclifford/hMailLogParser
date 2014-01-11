@@ -11,16 +11,16 @@ namespace TestClient
     {
         static void Main(string[] args)
         {
-            Parser p = new Parser();
+            //Parser p = new Parser();
 
-            var lines = p.Parse("log.log");
-            Console.WriteLine(lines.Count());
+            //var lines = p.Parse("log.log");
+            //Console.WriteLine(lines.Count());
 
-            var grouped = lines.GroupBy(x => x.SessionID);
-            Console.WriteLine(grouped.Count());
+            //var grouped = lines.GroupBy(x => x.SessionID);
+            //Console.WriteLine(grouped.Count());
 
-            var grouped2 = lines.GroupBy(x => x.ThreadID);
-            Console.WriteLine(grouped2.Count());
+            //var grouped2 = lines.GroupBy(x => x.ThreadID);
+            //Console.WriteLine(grouped2.Count());
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailLogParser.Line
 {
-    public class SMTPDaemonLine : SMTPLine
+    public class SMTPDaemonLine : SessionBasedLine
     {
         public SMTPDaemonLine(string[] columns)
             : base(columns)
@@ -31,10 +31,10 @@ namespace hMailLogParser.Line
             }
         }
 
-        private const string _LINE_TYPE = "SMTPD";
+        public const string LINE_TYPE = "SMTPD";
         protected override string GetLineType()
         {
-            return _LINE_TYPE;
+            return LINE_TYPE;
         }
     }
 }

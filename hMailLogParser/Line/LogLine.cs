@@ -18,7 +18,6 @@ namespace hMailLogParser.Line
 
         public string LineType { get { return GetLineType(); } }
         public int ThreadID { get; set; }
-        public int SessionID { get; set; }
         public DateTime Date { get; set; }
         public string Message { get; set; }
     }

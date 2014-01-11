@@ -5,9 +5,9 @@ using System.Text;
 
 namespace hMailLogParser.Line
 {
-    public class SMTPClientLine : SessionBasedLine
+    public class ApplicationLine : LogLine
     {
-        public SMTPClientLine(string[] columns)
+        public ApplicationLine(string[] columns)
             : base(columns)
         {
 
@@ -15,15 +15,11 @@ namespace hMailLogParser.Line
 
         protected override void Parse(string[] columns)
         {
-            if (columns.Length == 6)
+            if (columns.Length == 4)
             {
                 this.ThreadID = int.Parse(columns[1].Sanitize());
-                this.SessionID = int.Parse(columns[2].Sanitize());
-                this.Date = DateTime.Parse(columns[3].Sanitize());
-                this.IPAddress = columns[4].Sanitize();
-                this.Message = columns[5].Sanitize();
-
-                this.ParseSMTPMessage(this.Message);
+                this.Date = DateTime.Parse(columns[2].Sanitize());
+                this.Message = columns[3].Sanitize();
             }
             else
             {
@@ -31,10 +27,10 @@ namespace hMailLogParser.Line
             }
         }
 
-        public const string LINE_TYPE = "SMTPC";
+        public const string LINE_TYPE = "APPLICATION";
         protected override string GetLineType()
         {
             return LINE_TYPE;
-        }        
+        }
     }
 }

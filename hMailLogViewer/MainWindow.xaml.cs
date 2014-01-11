@@ -72,9 +72,9 @@ namespace hMailLogViewer
                     w =>
                     {
                         bool statusFilter = true;
-                        if (w is SMTPLine)
+                        if (w is SessionBasedLine)
                         {
-                            var smtpLine = w as SMTPLine;
+                            var smtpLine = w as SessionBasedLine;
                             switch (smtpLine.StatusLevel)
                             {
                                 case SMTPStatusLevel.Error:
@@ -128,13 +128,16 @@ namespace hMailLogViewer
         {
             using (new CodeTimer())
             {
-                var line = this.dgLogViewer.SelectedItem as LogLine;
-                var items = this.defaultView.SourceCollection.OfType<LogLine>().Where(x => x.SessionID == line.SessionID).ToArray();
-                winLineDetails dialog = new winLineDetails();
-                dialog.Owner = this;
-                dialog.Line = line;
-                dialog.RelatedLines = items;
-                dialog.Show();
+                var line = this.dgLogViewer.SelectedItem as SessionBasedLine;
+                if (line != null)
+                {
+                    var items = this.defaultView.SourceCollection.OfType<SessionBasedLine>().Where(x => x.SessionID == line.SessionID).ToArray();
+                    winLineDetails dialog = new winLineDetails();
+                    dialog.Owner = this;
+                    dialog.Line = line;
+                    dialog.RelatedLines = items;
+                    dialog.Show();
+                }
             }
         }
 

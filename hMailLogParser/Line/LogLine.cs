@@ -5,6 +5,13 @@ using System.Text;
 
 namespace hMailLogParser.Line
 {
+    public enum MessageStatusLevel
+    {
+        Infomation = 0,
+        Warning = 1,
+        Error = 2
+    }
+
     public abstract class LogLine
     {
         public LogLine(string[] columns)
@@ -20,5 +27,6 @@ namespace hMailLogParser.Line
         public int ThreadID { get; set; }
         public DateTime Date { get; set; }
         public string Message { get; set; }
+        public MessageStatusLevel MessageStatus { get; set; }
     }
 }

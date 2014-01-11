@@ -72,18 +72,18 @@ namespace hMailLogViewer
                     w =>
                     {
                         bool statusFilter = true;
-                        if (w is SessionBasedLine)
+                        if (w is LogLine)
                         {
-                            var smtpLine = w as SessionBasedLine;
-                            switch (smtpLine.StatusLevel)
+                            var smtpLine = w as LogLine;
+                            switch (smtpLine.MessageStatus)
                             {
-                                case SMTPStatusLevel.Error:
+                                case MessageStatusLevel.Error:
                                     statusFilter = tbFilterError.IsChecked.GetValue();
                                     break;
-                                case SMTPStatusLevel.Transient:
+                                case MessageStatusLevel.Warning:
                                     statusFilter = tbFilterTransient.IsChecked.GetValue();
                                     break;
-                                case SMTPStatusLevel.Normal:
+                                case MessageStatusLevel.Infomation:
                                     statusFilter = tbFilterNormal.IsChecked.GetValue();
                                     break;
                             }

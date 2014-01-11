@@ -56,10 +56,10 @@
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Error">
+                        <DataTrigger Binding="{Binding Path=MessageStatus}" Value="Error">
                             <Setter Property="Background" Value="OrangeRed" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=StatusLevel}" Value="Transient">
+                        <DataTrigger Binding="{Binding Path=MessageStatus}" Value="Warning">
                             <Setter Property="Background" Value="Yellow" />
                         </DataTrigger>
                     </Style.Triggers>

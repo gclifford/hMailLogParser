@@ -6,13 +6,6 @@ using System.Text.RegularExpressions;
 
 namespace hMailLogParser.Line
 {
-    public enum SMTPStatusLevel
-    {
-        Normal = 0,
-        Transient = 1,
-        Error = 2
-    }
-
     public abstract class SessionBasedLine : LogLine
     {
         public SessionBasedLine(string[] columns)
@@ -57,13 +50,13 @@ namespace hMailLogParser.Line
             {
                 this.SMTPStatusCode = int.Parse(groupSMTPStatus.Value);
                 if (this.SMTPStatusCode >= 300 && this.SMTPStatusCode < 400)
-                    this.StatusLevel = SMTPStatusLevel.Normal;
+                    this.MessageStatus = MessageStatusLevel.Infomation;
                 else if (this.SMTPStatusCode >= 400 && this.SMTPStatusCode < 500)
-                    this.StatusLevel = SMTPStatusLevel.Transient;
+                    this.MessageStatus = MessageStatusLevel.Warning;
                 else if (this.SMTPStatusCode >= 500)
-                    this.StatusLevel = SMTPStatusLevel.Error;
+                    this.MessageStatus = MessageStatusLevel.Error;
                 else
-                    this.StatusLevel = SMTPStatusLevel.Normal;
+                    this.MessageStatus = MessageStatusLevel.Infomation;
             }
 
             var groupMessage = match.Groups["Message"];
@@ -74,7 +67,7 @@ namespace hMailLogParser.Line
         }
 
         public int SMTPStatusCode { get; set; }
-        public SMTPStatusLevel StatusLevel { get; set; }
+        
         public string ParsedMessage { get; set; }
         public string IPAddress { get; set; }
         public int SessionID { get; set; }

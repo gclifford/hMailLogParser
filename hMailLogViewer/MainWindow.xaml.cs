@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 // hMailLogParser
 using hMailLogParser;
 using hMailLogParser.Line;
+using System.Threading.Tasks;
 
 namespace hMailLogViewer
 {
@@ -31,16 +32,16 @@ namespace hMailLogViewer
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+       async private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var args = Environment.GetCommandLineArgs();
             if (args.Length == 2)
             {
-                this.LoadFile(args[1]);
+                await this.LoadFile(args[1]);
             }
         }
 
-        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        async private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.InitialDirectory = Environment.CurrentDirectory;
@@ -55,11 +56,11 @@ namespace hMailLogViewer
             if (result == true)
             {
                 // Open document 
-                this.LoadFile(dlg.FileNames);
+                await this.LoadFile(dlg.FileNames);
             }
         }
 
-        protected void LoadFile(params string[] filenames)
+        async protected Task LoadFile(params string[] filenames)
         {
             using (new CodeTimer(this.tbExectuionTime))
             {
@@ -68,7 +69,8 @@ namespace hMailLogViewer
                 List<LogLine> lines = new List<LogLine>();
                 foreach (var filename in filenames)
                 {
-                    lines.AddRange(p.Parse(filename));
+                    var l = await p.Parse(filename);
+                    lines.AddRange(l);
                 }
 
                 this.defaultView = CollectionViewSource.GetDefaultView(lines);

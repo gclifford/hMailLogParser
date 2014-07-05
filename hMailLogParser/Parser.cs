@@ -5,25 +5,27 @@ using System.Linq;
 using System.Text;
 
 using hMailLogParser.Line;
+using System.Threading.Tasks;
 
 namespace hMailLogParser
 {
     public class Parser
     {
-        public IEnumerable<LogLine> Parse(string fileName)
+        async public Task<IEnumerable<LogLine>> Parse(string fileName)
         {
             using (StreamReader sr = new StreamReader(fileName))
             {
-                return this.Parse(sr);
+                return await this.Parse(sr);
             }
         }
 
-        public IEnumerable<LogLine> Parse(StreamReader stream)
+        async public Task<IEnumerable<LogLine>> Parse(StreamReader stream)
         {
             List<LogLine> lines = new List<LogLine>();
             while (!stream.EndOfStream)
             {
-                string[] columns = stream.ReadLine().Split('\t');
+                string line = await stream.ReadLineAsync();
+                string[] columns = line.Split('\t');
                 lines.Add(this.CreateLine(columns));
             }
 

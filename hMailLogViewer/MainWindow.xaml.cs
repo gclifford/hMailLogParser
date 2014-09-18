@@ -25,6 +25,8 @@ namespace hMailLogViewer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string _DEFAULT_HMAIL_LOG_PATH = "C:\\Program Files\\hMailServer\\Logs";
+
         private ICollectionView defaultView;
 
         public MainWindow()
@@ -44,7 +46,12 @@ namespace hMailLogViewer
         async private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.InitialDirectory = Environment.CurrentDirectory;
+
+            string defaultLogDirectory = _DEFAULT_HMAIL_LOG_PATH;
+            if (!System.IO.Directory.Exists(defaultLogDirectory))
+                defaultLogDirectory = Environment.CurrentDirectory;
+
+            dlg.InitialDirectory = defaultLogDirectory;
             dlg.Multiselect = true;
             dlg.Filter = "Log|*.log|All Files|*.*";
             dlg.DefaultExt = ".log"; // Default file extension

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailLogViewer
 {
-    public class CodeTimer : IDisposable
+    public sealed class CodeTimer : IDisposable
     {
         readonly System.Diagnostics.Stopwatch _stopWatch;
         readonly System.Windows.Controls.TextBlock _control;

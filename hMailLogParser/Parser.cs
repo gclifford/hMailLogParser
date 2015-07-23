@@ -21,7 +21,7 @@ namespace hMailLogParser
 
         async public Task<IEnumerable<LogLine>> Parse(StreamReader stream)
         {
-            List<LogLine> lines = new List<LogLine>();
+            var lines = new List<LogLine>();
             while (!stream.EndOfStream)
             {
                 string line = await stream.ReadLineAsync();
@@ -32,7 +32,7 @@ namespace hMailLogParser
             return lines;
         }
 
-        private LogLine CreateLine(string[] columns)
+        LogLine CreateLine(string[] columns)
         {
             LogLine line = null;
             var type = columns[0].Sanitize();

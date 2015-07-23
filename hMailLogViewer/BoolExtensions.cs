@@ -9,7 +9,7 @@ namespace hMailLogViewer
     {
         public static bool GetValue(this bool? input)
         {
-            return input.HasValue ? input.Value : false;
+            return input.HasValue && input.Value;
         }
     }
 }

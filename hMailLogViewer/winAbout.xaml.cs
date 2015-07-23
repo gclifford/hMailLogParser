@@ -34,7 +34,7 @@ namespace hMailLogViewer
                 object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
                 if (attributes.Length > 0)
                 {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                    var titleAttribute = (AssemblyTitleAttribute)attributes[0];
                     if (titleAttribute.Title != "")
                     {
                         return titleAttribute.Title;
@@ -105,7 +105,7 @@ namespace hMailLogViewer
         }
         #endregion
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.tbAuthor.Text = this.AssemblyCompany;
             this.tbCopyRight.Text = this.AssemblyCopyright;

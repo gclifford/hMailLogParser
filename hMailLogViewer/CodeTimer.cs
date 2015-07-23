@@ -7,8 +7,8 @@ namespace hMailLogViewer
 {
     public class CodeTimer : IDisposable
     {
-        private System.Diagnostics.Stopwatch _stopWatch;
-        private System.Windows.Controls.TextBlock _control;
+        System.Diagnostics.Stopwatch _stopWatch;
+        System.Windows.Controls.TextBlock _control;
 
         public CodeTimer()
             :this(null)

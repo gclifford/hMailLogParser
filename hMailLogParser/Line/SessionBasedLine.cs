@@ -60,10 +60,7 @@ namespace hMailLogParser.Line
             }
 
             var groupMessage = match.Groups["Message"];
-            if (groupMessage.Success)
-                this.ParsedMessage = groupMessage.Value;
-            else
-                this.ParsedMessage = string.Empty;
+            this.ParsedMessage = groupMessage.Success ? groupMessage.Value : string.Empty;
         }
 
         public int SMTPStatusCode { get; set; }

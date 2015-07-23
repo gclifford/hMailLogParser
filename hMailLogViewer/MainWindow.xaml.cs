@@ -25,16 +25,16 @@ namespace hMailLogViewer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string _DEFAULT_HMAIL_LOG_PATH = "C:\\Program Files\\hMailServer\\Logs";
+        const string _DEFAULT_HMAIL_LOG_PATH = "C:\\Program Files\\hMailServer\\Logs";
 
-        private ICollectionView defaultView;
+        ICollectionView defaultView;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-       async private void Window_Loaded(object sender, RoutedEventArgs e)
+       async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var args = Environment.GetCommandLineArgs();
             if (args.Length == 2)
@@ -43,9 +43,9 @@ namespace hMailLogViewer
             }
         }
 
-        async private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        async void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            var dlg = new Microsoft.Win32.OpenFileDialog();
 
             string defaultLogDirectory = _DEFAULT_HMAIL_LOG_PATH;
             if (!System.IO.Directory.Exists(defaultLogDirectory))
@@ -57,7 +57,7 @@ namespace hMailLogViewer
             dlg.DefaultExt = ".log"; // Default file extension
 
             // Show open file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
+            bool? result = dlg.ShowDialog();
 
             // Process open file dialog box results 
             if (result == true)
@@ -71,9 +71,9 @@ namespace hMailLogViewer
         {
             using (new CodeTimer(this.tbExectuionTime))
             {
-                Parser p = new Parser();
+                var p = new Parser();
 
-                List<LogLine> lines = new List<LogLine>();
+                var lines = new List<LogLine>();
                 foreach (var filename in filenames)
                 {
                     var l = await p.Parse(filename);
@@ -85,9 +85,9 @@ namespace hMailLogViewer
                     w =>
                     {
                         bool statusFilter = true;
-                        if (w is LogLine)
-                        {
-                            var smtpLine = w as LogLine;
+                        var smtpLine = w as LogLine;
+                        if (smtpLine == null)
+                        {               
                             switch (smtpLine.MessageStatus)
                             {
                                 case MessageStatusLevel.Error:
@@ -123,12 +123,12 @@ namespace hMailLogViewer
             }
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             this.Search();
         }
 
-        private void TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        void TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key != System.Windows.Input.Key.Enter)
                 return;
@@ -137,7 +137,7 @@ namespace hMailLogViewer
             this.Search();
         }
 
-        private void dgLogViewer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        void dgLogViewer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             using (new CodeTimer())
             {
@@ -145,7 +145,7 @@ namespace hMailLogViewer
                 if (line != null)
                 {
                     var items = this.defaultView.SourceCollection.OfType<SessionBasedLine>().Where(x => x.SessionID == line.SessionID).ToArray();
-                    winLineDetails dialog = new winLineDetails();
+                    var dialog = new winLineDetails();
                     dialog.Owner = this;
                     dialog.Line = line;
                     dialog.RelatedLines = items;
@@ -154,14 +154,14 @@ namespace hMailLogViewer
             }
         }
 
-        private void tbFilter_Checked(object sender, RoutedEventArgs e)
+        void tbFilter_Checked(object sender, RoutedEventArgs e)
         {
             this.Search();
         }
 
-        private void MenuItemAbout_Click(object sender, RoutedEventArgs e)
+        void MenuItemAbout_Click(object sender, RoutedEventArgs e)
         {
-            winAbout dialog = new winAbout();
+            var dialog = new winAbout();
             dialog.Owner = this;
             dialog.ShowDialog();
         }

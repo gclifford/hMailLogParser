@@ -7,13 +7,7 @@ namespace hMailLogParser.Line
 {
     public class POP3DaemonLine : SessionBasedLine
     {
-        public POP3DaemonLine(string[] columns)
-            : base(columns)
-        {
-
-        }
-
-        protected override void Parse(string[] columns)
+        internal override void Parse(string[] columns)
         {
             if (columns.Length == 6)
             {

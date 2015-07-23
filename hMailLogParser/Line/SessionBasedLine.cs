@@ -8,12 +8,6 @@ namespace hMailLogParser.Line
 {
     public abstract class SessionBasedLine : LogLine
     {
-        public SessionBasedLine(string[] columns)
-            : base(columns)
-        {
-
-        }
-
         /*
             200 	(nonstandard success response, see rfc876)
             211 	System status, or system help reply
@@ -41,6 +35,7 @@ namespace hMailLogParser.Line
             554 	Transaction failed
         */
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Language Usage Opportunities", "RECS0011:Convert 'if' to '?:'", Justification = "I prefer having a clean else instead of an else containing an ternary operation.")]
         protected void ParseSMTPMessage(string message)
         {
             var match = CompiledRegex.SMTPMessage.Match(message);

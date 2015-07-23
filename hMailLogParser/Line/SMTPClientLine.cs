@@ -7,13 +7,7 @@ namespace hMailLogParser.Line
 {
     public class SMTPClientLine : SessionBasedLine
     {
-        public SMTPClientLine(string[] columns)
-            : base(columns)
-        {
-
-        }
-
-        protected override void Parse(string[] columns)
+        internal override void Parse(string[] columns)
         {
             if (columns.Length == 6)
             {

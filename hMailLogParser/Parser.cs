@@ -39,24 +39,26 @@ namespace hMailLogParser
             switch (type)
             {
                 case SMTPDaemonLine.LINE_TYPE:
-                    line = new SMTPDaemonLine(columns);
+                    line = new SMTPDaemonLine();
                     break;
                 case SMTPClientLine.LINE_TYPE:
-                    line = new SMTPClientLine(columns);
+                    line = new SMTPClientLine();
                     break;
                 case TCPIPLine.LINE_TYPE:
-                    line = new TCPIPLine(columns);
+                    line = new TCPIPLine();
                     break;
                 case ApplicationLine.LINE_TYPE:
-                    line = new ApplicationLine(columns);
+                    line = new ApplicationLine();
                     break;
                 case POP3DaemonLine.LINE_TYPE:
-                    line = new POP3DaemonLine(columns);
+                    line = new POP3DaemonLine();
                     break;
                 default:
-                    line = new UnknownLine(columns);
+                    line = new UnknownLine();
                     break;
             }
+
+            line.Parse(columns);
 
             return line;
         }

@@ -14,12 +14,7 @@ namespace hMailLogParser.Line
 
     public abstract class LogLine
     {
-        public LogLine(string[] columns)
-        {
-            this.Parse(columns);
-        }
-
-        protected abstract void Parse(string[] columns);
+        internal abstract void Parse(string[] columns);
 
         protected abstract string GetLineType();
 
